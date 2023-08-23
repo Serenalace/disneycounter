@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <link rel="icon" href="img/OIP (1).jpg" />
+
+
+
+    <title>Contatore Disney</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        cursor: url(img/mouse.png), auto;
+    }
+
+    #soundtrack {
+        margin-top: 20px;
+    }
+
+    body {
+    
+        font-family: "WaltographUI", sans-serif;
+        background-image: url('img/Disney\ Intro\ Full\ HD\ 1080p.mp4');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden; 
+    }
+    #video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    @font-face {
+        font-family: "WaltographUI";
+        src: url('WaltographUI.ttf') format('truetype');
+    }
+
+    #title {
+
+        font-size: 80px;
+        font-weight: bold;
+        background-image: linear-gradient(to right, blue, rgb(202, 153, 240) 33%, rgb(132, 192, 211) 33%, rgb(247, 127, 249) 33%, rgb(240, 135, 148) 33%, rgb(251, 220, 134));
+        -webkit-background-clip: text;
+        color: transparent;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+
+    #counter-container {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #counter {
+        font-size: 50px;
+        font-weight: bold;
+        color: blueviolet;
+    }
+
+    #buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .button-small {
+        width: 200px;
+        font-size: 50px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button-orange {
+        background-color: orange;
+        color: white;
+        font-family: "WaltographUI";
+    }
+    #soundtrack {
+            position: absolute;
+            top: 15%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            z-index: 1; 
+        }
+        
+    /* Responsive Styles */
+    @media all and (max-width: 1280px) {
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url(img/Progetto\ senza\ titolo.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            overflow-y: hidden;
+
+        }
+
+
+        #title {
+            text-align: center;
+            font-size: 40px;
+
+        }
+
+        .button-small {
+            width: 100px;
+            font-size: 25px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #counter-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #counter {
+            font-size: 20px;
+            font-weight: bold;
+            color: blueviolet;
+        }
+       
+    }
+</style>
+
+<script>
+
+
+
+    var count = 0;
+
+    function incrementCounter() {
+        count++;
+        updateDisplay();
+        playIncrementSound();
+    }
+    function playIncrementSound() {
+        var incrementSound = document.getElementById("incrementSound");
+        incrementSound.play();
+    }
+
+    function decrementCounter() {
+        if (count > 0) {
+            count--;
+            updateDisplay();
+            playDecrementSound();
+        }
+    }
+    function playDecrementSound() {
+        var decrementSound = document.getElementById("decrementSound");
+        decrementSound.play();
+    }
+    function resetCounter() {
+        count = 0;
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        document.getElementById("counter").textContent = count;
+    }
+
+    
+    function playBackgroundMusic() {
+        var soundtrack = document.getElementById("soundtrack");
+        soundtrack.play();
+    }
+
+    
+</script>
+<body>
+   
+    <audio id="soundtrack" controls>
+        <source src="audio/La (mp3cut.net).mp3" type="audio/mpeg">
+    </audio>
+
+    
+    <h1 id="title">Contatore Disney</h1>
+    <div id="counter-container">
+        <span id="counter">0</span>
+    </div>
+    <div id="buttons">
+        <button class="button-small button-orange" onclick="decrementCounter()">-</button>
+        <button class="button-small button-orange" onclick="resetCounter()">Reset</button>
+        <button class="button-small button-orange" onclick="incrementCounter()">+</button>
+    </div>
+    <video id="video-background" autoplay loop muted>
+        <source src="img/Disney Intro Full HD 1080p.mp4" type="video/mp4">
+    </video>
+    
+    
+   
+    <audio id="decrementSound">
+        <source src="audio/Risata Pippo (mp3cut.net).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="incrementSound">
+        <source src="audio/Topolino ride! Voi provate a non ridere (mp3cut (mp3cut.net).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+</body>
+
+
+
+
+
+</body>
+
+</html>
